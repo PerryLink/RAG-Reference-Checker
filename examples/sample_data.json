@@ -1,0 +1,13 @@
+{
+  "answer": "根据文档[1]，Python是一种解释型、高级编程语言。此外[2]提到它支持多范式编程，包括面向对象和函数式编程。",
+  "references": [
+    {
+      "id": 1,
+      "content": "Python is an interpreted, high-level programming language. It was created by Guido van Rossum and first released in 1991."
+    },
+    {
+      "id": 2,
+      "content": "Java is a compiled language with strong typing. It requires explicit type declarations and is primarily used for enterprise applications."
+    }
+  ]
+}
