@@ -36,11 +36,21 @@ cd RAG-Reference-Checker
 poetry install
 ```
 
-下载一个 Sentence-Transformer 模型（如 `all-MiniLM-L6-v2`）：
+### 下载模型
+
+需要准备一个 Sentence-Transformer 模型，推荐使用 `all-MiniLM-L6-v2`。可使用仓库自带的脚本下载：
 
 ```bash
 python download_model.py sentence-transformers/all-MiniLM-L6-v2 ./models/all-MiniLM-L6-v2
 ```
+
+也可以直接在 Python 中下载：
+
+```bash
+python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')"
+```
+
+或从 <https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2> 手动下载全部文件到本地目录（例如 `./models/all-MiniLM-L6-v2/`）。
 
 ## 使用方法
 
@@ -73,6 +83,15 @@ rag-reference-checker check --input data.json --model-path ./models/all-MiniLM-L
 rag-reference-checker check --input data.json --model-path ./models/all-MiniLM-L6-v2 --threshold 0.7 --json
 ```
 
+## 工作原理
+
+1. **解析引用** —— 从答案文本中提取 `[1]`、`[2]` 等引用标记
+2. **提取上下文** —— 为每个引用标记提取周围文本
+3. **计算相似度** —— 使用 Sentence-Transformers 比较上下文与被引用文档
+4. **标记可疑** —— 将低于阈值的引用标记为可疑
+
+基于 Sentence-Transformers、NumPy、Click 与 Rich 构建。测试使用 pytest。
+
 ## 开发
 
 ```bash
@@ -80,6 +99,11 @@ poetry run pytest -v
 poetry run black src/
 poetry run ruff check src/
 ```
+
+## 相关项目
+
+- [dsh-library](https://github.com/PerryLink/dsh-library) —— 本工具已移植进的 DSH 插件
+- [PerryLink](https://github.com/PerryLink) —— PerryLink DSH 插件家族
 
 ## 许可证
 
