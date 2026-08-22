@@ -1,6 +1,7 @@
 <div align="center">
 
 # RAG-Reference-Checker
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/rag-reference-checker)
 
 **A CLI tool that checks whether the citations in a RAG answer really match their reference documents.**
 
