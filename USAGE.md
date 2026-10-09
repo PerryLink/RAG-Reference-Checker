@@ -248,7 +248,8 @@ jobs:
           python-version: '3.10'
       - name: Install dependencies
         run: |
-          pip install rag-reference-checker
+          pip install "git+https://github.com/PerryLink/RAG-Reference-Checker.git"
+          # （PyPI 未发布，源码直装）
           python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')"
       - name: Check references
         run: |
